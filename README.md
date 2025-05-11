@@ -220,7 +220,7 @@ Trong môi trường phức tạp, solution không còn là chuỗi hành độn
 |:--------------------------------:|:--------------------------------:|:--------------------------------:|
 | **Mô phỏng Uncertain BFS**                 | **Mô phỏng Search with No Observations**                 | **Mô phỏng Partially Observable DFS**                 |
 
-### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
+### Hình ảnh so sánh hiệu suất của các thuật toán
 
 | **Tiêu chí**               | **Uncertain BFS**                                      | **Search with No Observations**                 | **Partially Observable DFS**                 |
 | -------------------------- | ------------------------------------------------------ | ----------------------------------------------- | -------------------------------------------- |
@@ -252,7 +252,7 @@ Các thuật toán này thường sử dụng trong môi trường dạng POMDP 
         o Hiệu quả nếu môi trường bán quan sát được
         o Tuy nhiên, dễ mắc kẹt nếu giả định ban đầu sai
 
-## 2.4. Các thuật toán tìm kiếm trong môi trường phức tạp – Constraint Satisfaction Problems (CSPs)
+## 2.5. Các thuật toán tìm kiếm trong môi trường phức tạp – Constraint Satisfaction Problems (CSPs)
 ### Thành phần chính của bài toán tìm kiếm
 Trong môi trường phức tạp, các bài toán CSP yêu cầu tìm giá trị biến sao cho thỏa mãn tất cả ràng buộc (constraints). Khi trạng thái ban đầu không đầy đủ hoặc có bất định, việc giải CSP trở nên thách thức hơn.
 **Các yếu tố cần được xem xét:**
@@ -273,33 +273,46 @@ Trong môi trường phức tạp, các bài toán CSP yêu cầu tìm giá tr�
 •	Học từ quá trình giải để thích nghi trong môi trường không xác định.
 
 - **Một số thuật toán áp dụng:**
-1. Basic Backtracking:
+1. Backtracking:
 
-•	Thử giá trị cho từng biến theo thứ tự và quay lui khi phát hiện xung đột.
+    •	Thử giá trị cho từng biến theo thứ tự và quay lui khi phát hiện xung đột.
 
-•	Đơn giản nhưng dễ bị mắc kẹt ở nhánh sai.
+    •	Đơn giản nhưng dễ bị mắc kẹt ở nhánh sai.
 
 2. Backtracking with Forward Checking:
 
-•	Trước khi gán giá trị cho biến, kiểm tra các biến chưa gán có còn giá trị hợp lệ hay không.
+    •	Trước khi gán giá trị cho biến, kiểm tra các biến chưa gán có còn giá trị hợp lệ hay không.
 
-•	Giảm số lượng backtrack, tránh sớm các lựa chọn vô ích.
+    •	Giảm số lượng backtrack, tránh sớm các lựa chọn vô ích.
 
 3. Min-Conflicts Heuristic (Local Search CSP):
 
-•	Khởi tạo lời giải ngẫu nhiên và lặp lại bằng cách thay đổi giá trị của biến gây xung đột nhiều nhất.
+    •	Khởi tạo lời giải ngẫu nhiên và lặp lại bằng cách thay đổi giá trị của biến gây xung đột nhiều nhất.
 
-•	Phù hợp với bài toán CSP lớn, cho phép sai số tạm thời để tối ưu dần.
+    •	Phù hợp với bài toán CSP lớn, cho phép sai số tạm thời để tối ưu dần.
 
 ### Solution là gì?
 Trong bài toán CSP, solution là một ánh xạ giữa các biến và giá trị sao cho tất cả các ràng buộc đều được thỏa mãn. Trong môi trường phức tạp (có thể thay đổi hoặc thiếu quan sát), solution đôi khi phải là tập hợp các gán giá trị khả thi hoặc kế hoạch thích nghi được với nhiều cấu hình ràng buộc.
 
 ### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
 
-### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
+### Hình ảnh so sánh hiệu suất của các thuật toán
+
+| **Tiêu chí**               | **Backtracking**                                          | **Backtracking + Forward Checking**                            | **Min-Conflicts Heuristic**                                      |
+| -------------------------- | --------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Chiến lược chính**       | Thử từng giá trị, quay lui khi vi phạm ràng buộc          | Giống Backtracking nhưng loại trừ sớm các giá trị không hợp lệ | Tìm lời giải bằng cách giảm số xung đột hiện tại                 |
+| **Tối ưu?**                | Có nếu duyệt toàn bộ không gian                           | Có (tốt hơn do loại sớm các giá trị không hợp lệ)              | Không đảm bảo tối ưu, có thể mắc kẹt cục bộ                      |
+| **Hoàn tất (Complete)?**   | Có nếu không gian nhỏ                                     | Có, nhanh hơn so với Backtracking cơ bản                       | Không (có thể không tìm thấy lời giải nếu không đủ bước)         |
+| **Dựa vào heuristic?**     | Không (trừ khi kết hợp thêm chiến lược chọn biến/giá trị) | Có thể kết hợp thêm heuristics như MRV, LCV                    | Có — luôn dùng hàm đánh giá số xung đột                          |
+| **Xử lý không chắc chắn?** | Không                                                     | Không                                                          | Có thể thích nghi tốt với ràng buộc mềm hoặc động                |
+| **Bộ nhớ sử dụng?**        | Thấp                                                      | Trung bình (do lưu thông tin forward checking)                 | Rất thấp (local search không lưu toàn bộ cây)                    |
+| **Thời gian chạy?**        | Chậm nếu không gian lớn                                   | Nhanh hơn backtracking thường                                  | Rất nhanh với bài toán lớn, nhưng không luôn tìm được lời giải   |
+| **Thích hợp khi nào?**     | Bài toán nhỏ hoặc vừa, không cần tối ưu tốc độ            | Bài toán vừa đến lớn, có nhiều ràng buộc chặt chẽ              | Bài toán CSP lớn (như map coloring, n-queen), cần lời giải nhanh |
+| **Nhược điểm chính**       | Dễ rơi vào không gian không lời giải                      | Tốn thêm chi phí kiểm tra forward                              | Có thể lặp vô hạn hoặc mắc kẹt cục bộ                            |
+
 
 ### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
-    • Basic Backtracking:
+    • Backtracking:
         o Cấu trúc đơn giản nhưng dễ rơi vào dead-end.
         o Phù hợp với bài toán nhỏ hoặc ràng buộc ít.
     • Forward Checking:
