@@ -114,11 +114,16 @@ Không cần lưu toàn bộ đường đi như các thuật toán trước.
 Trong local search, “solution” không nhất thiết phải là đường đi tối ưu mà là một trạng thái đủ tốt hoặc cực đại cục bộ gần với trạng thái đích. 
 #### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
 
+| <img src="assets/Simple HC.gif" width="200"/> | <img src="assets/Steepest HC.gif" width="200"/> | <img src="assets/Stochastic HC.gif" width="200"/> |
+|:--------------------------------:|:--------------------------------:|:--------------------------------:|
+| **Mô phỏng Simple Hill Climbing**                 | **Mô phỏng Steepest Ascent Hill Climbing**                 | **Mô phỏng Stochastic Hill Climbing**                 |
+
+| <img src="assets/SA.gif" width="200"/> | <img src="assets/Beam Search.gif" width="200"/> | <img src="assets/GA.gif" width="200"/> |
+|:--------------------------------:|:--------------------------------:|:--------------------------------:|
+| **Mô phỏng Simulated Annealing**                 | **Mô phỏng Beam Search**                 | **Mô phỏng Genetic Algorithm**                 |
+
 #### Hình ảnh so sánh hiệu suất của các thuật toán
-Biểu đồ nên thể hiện:
-•	Trục X: Tên thuật toán
-•	Trục Y: % số lần tìm được lời giải đúng trong n lần thử
-•	Có thể thêm thanh hiển thị số bước trung bình hoặc thời gian trung bình
+
 #### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
     • Simple Hill Climbing:
         o	Dễ cài đặt nhưng dễ kẹt tại đỉnh cục bộ.
