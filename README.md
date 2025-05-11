@@ -184,7 +184,7 @@ Population: quần thể trạng thái trong mỗi thế hệ
         o	Hiệu quả nhưng cần điều chỉnh kỹ mutation rate, selection method,...
         o	Có thể tìm được lời giải tốt nhưng không đảm bảo tối ưu.
 
-## 2.4. Các thuật toán tìm kiếm trong môi trường phức tạp
+## 2.4. Các thuật toán tìm kiếm trong môi trường phức tạp (Searching in complex environments)
 ### Thành phần chính của bài toán tìm kiếm
 
 **Trong môi trường phức tạp (uncertain/partial observable), thuật toán tìm kiếm cần xử lý thêm các yếu tố không chắc chắn như:**
@@ -194,7 +194,7 @@ Population: quần thể trạng thái trong mỗi thế hệ
 • **Tính bất định trong hành động (uncertainty):** hành động có thể dẫn đến kết quả không như mong đợi.
 
 • **Không quan sát được kết quả hành động (no observation):** hệ thống không phản hồi về trạng thái mới.
-*
+
 **Để thích nghi với các điều kiện này, thuật toán thường phải:**
 
 • Lưu trữ tập hợp các trạng thái có thể (belief states)
@@ -251,3 +251,60 @@ Các thuật toán này thường sử dụng trong môi trường dạng POMDP 
         o Cân bằng giữa mở rộng sâu và lưu trữ tập trạng thái
         o Hiệu quả nếu môi trường bán quan sát được
         o Tuy nhiên, dễ mắc kẹt nếu giả định ban đầu sai
+
+## 2.4. Các thuật toán tìm kiếm trong môi trường phức tạp – Constraint Satisfaction Problems (CSPs)
+### Thành phần chính của bài toán tìm kiếm
+Trong môi trường phức tạp, các bài toán CSP yêu cầu tìm giá trị biến sao cho thỏa mãn tất cả ràng buộc (constraints). Khi trạng thái ban đầu không đầy đủ hoặc có bất định, việc giải CSP trở nên thách thức hơn.
+**Các yếu tố cần được xem xét:**
+•	Không gian trạng thái khổng lồ: số tổ hợp biến và miền giá trị lớn.
+
+•	Ràng buộc phức tạp: có thể là ràng buộc toàn cục hoặc cục bộ, không dễ kiểm tra.
+
+•	Thông tin không đầy đủ hoặc động: biến có thể thay đổi hoặc bị ảnh hưởng từ môi trường.
+
+**Để xử lý môi trường phức tạp, các thuật toán giải CSP cần:**
+
+•	Tìm kiếm có giới hạn (constraint propagation) để loại trừ sớm các giá trị không hợp lệ.
+
+•	Backtracking có cải tiến để tránh lặp lại các sai lầm đã biết.
+
+•	Lập kế hoạch mềm (flexible planning) nếu ràng buộc có thể nới lỏng.
+
+•	Học từ quá trình giải để thích nghi trong môi trường không xác định.
+
+- **Một số thuật toán áp dụng:**
+1. Basic Backtracking:
+
+•	Thử giá trị cho từng biến theo thứ tự và quay lui khi phát hiện xung đột.
+
+•	Đơn giản nhưng dễ bị mắc kẹt ở nhánh sai.
+
+2. Backtracking with Forward Checking:
+
+•	Trước khi gán giá trị cho biến, kiểm tra các biến chưa gán có còn giá trị hợp lệ hay không.
+
+•	Giảm số lượng backtrack, tránh sớm các lựa chọn vô ích.
+
+3. Min-Conflicts Heuristic (Local Search CSP):
+
+•	Khởi tạo lời giải ngẫu nhiên và lặp lại bằng cách thay đổi giá trị của biến gây xung đột nhiều nhất.
+
+•	Phù hợp với bài toán CSP lớn, cho phép sai số tạm thời để tối ưu dần.
+
+### Solution là gì?
+Trong bài toán CSP, solution là một ánh xạ giữa các biến và giá trị sao cho tất cả các ràng buộc đều được thỏa mãn. Trong môi trường phức tạp (có thể thay đổi hoặc thiếu quan sát), solution đôi khi phải là tập hợp các gán giá trị khả thi hoặc kế hoạch thích nghi được với nhiều cấu hình ràng buộc.
+
+### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
+
+### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
+
+### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
+    • Basic Backtracking:
+        o Cấu trúc đơn giản nhưng dễ rơi vào dead-end.
+        o Phù hợp với bài toán nhỏ hoặc ràng buộc ít.
+    • Forward Checking:
+        o Cải thiện tốc độ đáng kể bằng cách loại trừ giá trị sớm.
+        o Tuy nhiên không phát hiện được ràng buộc sâu hơn giữa các biến.
+    • Min-Conflicts:
+        o Rất nhanh trong các bài toán lớn, chấp nhận giải gần đúng.
+        o Không đảm bảo lời giải nếu không cẩn thận chọn hàm đánh giá.
