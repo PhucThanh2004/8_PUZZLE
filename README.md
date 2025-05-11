@@ -30,10 +30,10 @@ Solution là một chuỗi các hành động hoặc trạng thái dẫn từ tr
 
 | **Criterion**   | **Breadth-First** | **Uniform Cost** | **Depth-First** | **Depth-Bounded** | **Iterative Deepening** |
 |-----------------|-------------------|------------------|------------------|---------------------|--------------------------|
-| **Complete?**   | yes*              | yes              | no               | no                  | semi                     |
-| **Optimal?**    | yes**             | yes              | no               | no                  | yes**                    |
-| **Time**        | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(b^m)           | O(b^ℓ)              | O(b^d)                   |
-| **Space**       | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(bm)            | O(b^ℓ)              | O(bd)                    |
+| **Hoàn tất (Complete)?**   | yes               | yes              | no               | no                  | semi                     |
+| **Tối ưu (Optimal)?**    | yes               | yes              | no               | no                  | yes                      |
+| **Độ phức tạp thời gian (Time)**        | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(b^m)           | O(b^ℓ)              | O(b^d)                   |
+| **Độ phức tạp bộ nhớ (Space)**       | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(bm)            | O(b^ℓ)              | O(bd)                    |
 
 #### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
 
