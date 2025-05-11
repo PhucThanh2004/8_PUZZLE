@@ -8,17 +8,17 @@ Bài toán giải quyết trò chơi 8-Puzzle thông qua việc triển khai và
 
 #### Một bài toán tìm kiếm bao gồm các thành phần cơ bản sau:
 
-    •	Không gian trạng thái (State Space): tập hợp tất cả các trạng thái có thể có của bài toán.
-    •	**Trạng thái ban đầu (Initial State):** điểm bắt đầu quá trình tìm kiếm.
-    •	Tập hành động (Actions): tập các hành động có thể thực hiện để chuyển từ trạng thái này sang trạng thái khác.
-    •	Hàm chuyển trạng thái (Transition Model): mô tả kết quả của một hành động khi áp dụng lên trạng thái hiện tại.
-    •	Trạng thái đích (Goal Test): điều kiện để xác định trạng thái đích đã đạt được.
-    •	Chi phí đường đi (Path Cost): tổng chi phí của chuỗi hành động từ trạng thái ban đầu đến trạng thái đích (thường dùng trong tìm kiếm tối ưu như Uniform Cost Search).
+- **Không gian trạng thái (State Space):** tập hợp tất cả các trạng thái có thể có của bài toán.
+- **Trạng thái ban đầu (Initial State):** điểm bắt đầu quá trình tìm kiếm.
+- **Tập hành động (Actions):** tập các hành động có thể thực hiện để chuyển từ trạng thái này sang trạng thái khác.
+- **Hàm chuyển trạng thái (Transition Model):** mô tả kết quả của một hành động khi áp dụng lên trạng thái hiện tại.
+- **Trạng thái đích (Goal Test):** điều kiện để xác định trạng thái đích đã đạt được.
+- **Chi phí đường đi (Path Cost):** tổng chi phí của chuỗi hành động từ trạng thái ban đầu đến trạng thái đích (thường dùng trong tìm kiếm tối ưu như Uniform Cost Search).
 #### Solution là gì?
 Solution là một chuỗi các hành động hoặc trạng thái dẫn từ trạng thái ban đầu đến trạng thái mục tiêu (goal state). Trong bối cảnh của trò chơi 8-Puzzle, solution chính là chuỗi di chuyển các ô số để biến cấu hình ban đầu thành cấu hình mục tiêu (thường là sắp xếp từ 1–8, với ô trống ở vị trí cuối).
 #### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
 
-| <img src="BFS.gif" width="200"/> | <img src="IDS.gif" width="200"/> | <img src="assets/UC.gif" width="200"/> | <img src="DFS.gif" width="200"/> |
+| <img src="assets/BFS.gif" width="200"/> | <img src="assets/IDS.gif" width="200"/> | <img src="assets/UC.gif" width="200"/> | <img src="assets/DFS.gif" width="200"/> |
 |:--------------------------------:|:--------------------------------:|:--------------------------------:|:--------------------------------:|
 | **Mô phỏng BFS**                 | **Mô phỏng IDS**                 | **Mô phỏng UCS**                 | **Mô phỏng DFS**                 |
 #### Hình ảnh so sánh hiệu suất của các thuật toán
