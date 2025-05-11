@@ -26,6 +26,7 @@ Solution là một chuỗi các hành động hoặc trạng thái dẫn từ tr
 | <img src="assets/BFS.gif" width="200"/> | <img src="assets/IDS.gif" width="200"/> | <img src="assets/UC.gif" width="200"/> | <img src="assets/DFS.gif" width="200"/> |
 |:--------------------------------:|:--------------------------------:|:--------------------------------:|:--------------------------------:|
 | **Mô phỏng BFS**                 | **Mô phỏng IDS**                 | **Mô phỏng UCS**                 | **Mô phỏng DFS**                 |
+
 ### Hình ảnh so sánh hiệu suất của các thuật toán
 
 | **Criterion**   | **Breadth-First** | **Uniform Cost** | **Depth-First** | **Iterative Deepening** |
@@ -74,9 +75,10 @@ Các heuristic phổ biến trong 8-Puzzle:
 •   Manhattan Distance: tổng khoảng cách theo hàng và cột từ mỗi ô đến vị trí đúng của nó (hiệu quả hơn và phổ biến hơn)
 
 ### Solution là gì?
-Tương tự, solution là chuỗi hành động chuyển từ trạng thái ban đầu đến trạng thái đích. Với các thuật toán có thông tin, solution thường ngắn hơn và được tìm thấy nhanh hơn do thuật toán được dẫn đường bởi heuristic.
-### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
 
+Tương tự, solution là chuỗi hành động chuyển từ trạng thái ban đầu đến trạng thái đích. Với các thuật toán có thông tin, solution thường ngắn hơn và được tìm thấy nhanh hơn do thuật toán được dẫn đường bởi heuristic.
+
+### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
 
 | <img src="assets/Greedy.gif" width="200"/> | <img src="assets/A_Star.gif" width="200"/> | <img src="assets/IDA_Star.gif" width="200"/> |
 |:--------------------------------:|:--------------------------------:|:--------------------------------:|
@@ -103,6 +105,7 @@ d: độ sâu của lời giải tối ưu
 m: độ sâu tối đa của không gian trạng thái
 
 ### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
+
     • Greedy Best-First Search:
         o	Tìm nhanh do chỉ quan tâm đến h(n)
         o	Không đảm bảo lời giải tối ưu
@@ -118,7 +121,9 @@ m: độ sâu tối đa của không gian trạng thái
 
 
 ## 2.3. Các thuật toán tìm kiếm cục bộ (Local Search)
+
 ### Thành phần chính của bài toán tìm kiếm
+
 Tìm kiếm cục bộ là phương pháp không theo dõi toàn bộ đường đi từ trạng thái ban đầu đến đích, mà chỉ quan tâm đến việc cải thiện trạng thái hiện tại. Các thành phần chính bao gồm:
 
 •	Trạng thái hiện tại: một cấu hình của bài toán (ví dụ: cấu trúc 8-Puzzle hiện tại).
@@ -132,18 +137,17 @@ Tìm kiếm cục bộ là phương pháp không theo dõi toàn bộ đường 
 Không cần lưu toàn bộ đường đi như các thuật toán trước.
 
 ### Solution là gì?
+
 Trong local search, “solution” không nhất thiết phải là đường đi tối ưu mà là một trạng thái đủ tốt hoặc cực đại cục bộ gần với trạng thái đích. 
+
 ### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
 
-| <img src="assets/Simple HC.gif" width="200"/> | <img src="assets/Steepest HC.gif" width="200"/> | <img src="assets/Stochastic HC.gif" width="200"/> |
-|:--------------------------------:|:--------------------------------:|:--------------------------------:|
-| **Mô phỏng Simple Hill Climbing**                 | **Mô phỏng Steepest Ascent Hill Climbing**                 | **Mô phỏng Stochastic Hill Climbing**                 |
-
-| <img src="assets/SA.gif" width="200"/> | <img src="assets/Beam Search.gif" width="200"/> | <img src="assets/GA.gif" width="200"/> |
-|:--------------------------------:|:--------------------------------:|:--------------------------------:|
-| **Mô phỏng Simulated Annealing**                 | **Mô phỏng Beam Search**                 | **Mô phỏng Genetic Algorithm**                 |
+| <img src="assets/Simple HC.gif" width="200"/> | <img src="assets/Steepest HC.gif" width="200"/> | <img src="assets/Stochastic HC.gif" width="200"/> | <img src="assets/SA.gif" width="200"/> | <img src="assets/Beam Search.gif" width="200"/> | <img src="assets/GA.gif" width="200"/> |
+|:--------------------------------:|:--------------------------------:|:--------------------------------:|:--------------------------------:|:--------------------------------:|:--------------------------------:|
+| **Mô phỏng Simple Hill Climbing**                 | **Mô phỏng Steepest Ascent Hill Climbing**                 | **Mô phỏng Stochastic Hill Climbing**                 | **Mô phỏng Simulated Annealing**                 | **Mô phỏng Beam Search**                 | **Mô phỏng Genetic Algorithm**                 |
 
 ### Hình ảnh so sánh hiệu suất của các thuật toán
+
 | **Tiêu chí**                | **Simple Hill Climbing** | **Steepest Ascent HC**  | **Stochastic HC**        | **Simulated Annealing**     | **Beam Search**                | **Genetic Algorithm**             |
 | --------------------------- | ------------------------ | ----------------------- | ------------------------ | --------------------------- | ------------------------------ | --------------------------------- |
 | **Dựa vào Heuristic?**      | Có                       | Có                      | Có                       | Có                          | Có                             | Có                                |
@@ -164,6 +168,7 @@ Beam width: số trạng thái tốt nhất giữ lại mỗi bước
 Population: quần thể trạng thái trong mỗi thế hệ
 
 ### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
+
     • Simple Hill Climbing:
         o	Dễ cài đặt nhưng dễ kẹt tại đỉnh cục bộ.
         o	Không quay lại trạng thái trước đó → có thể thất bại.
@@ -185,6 +190,7 @@ Population: quần thể trạng thái trong mỗi thế hệ
         o	Có thể tìm được lời giải tốt nhưng không đảm bảo tối ưu.
 
 ## 2.4. Các thuật toán tìm kiếm trong môi trường phức tạp (Searching in complex environments)
+
 ### Thành phần chính của bài toán tìm kiếm
 
 **Trong môi trường phức tạp (uncertain/partial observable), thuật toán tìm kiếm cần xử lý thêm các yếu tố không chắc chắn như:**
@@ -317,6 +323,7 @@ Trong bài toán CSP, solution là một ánh xạ giữa các biến và giá t
 
 
 ### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
+
     • Backtracking:
         o Cấu trúc đơn giản nhưng dễ rơi vào dead-end.
         o Phù hợp với bài toán nhỏ hoặc ràng buộc ít.
