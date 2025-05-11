@@ -37,3 +37,38 @@ Solution là một chuỗi các hành động hoặc trạng thái dẫn từ tr
     •Uniform Cost Search:
         o	Tìm lời giải có chi phí thấp nhất (nếu chi phí mỗi bước khác nhau).
         o	Nếu mọi bước có cùng chi phí, tương tự như BFS.
+
+## 2.2.	Các thuật toán tìm kiếm có thông tin
+### Thành phần chính của bài toán tìm kiếm
+Ngoài các thành phần cơ bản giống tìm kiếm không có thông tin, các thuật toán có thông tin sử dụng thêm một yếu tố rất quan trọng:
+•	Hàm heuristic (h(n)): ước lượng chi phí từ một trạng thái n đến trạng thái đích (goal state). Đây là “thông tin bổ sung” giúp hướng dẫn tìm kiếm hiệu quả hơn.
+•	Hàm đánh giá (f(n)): tùy theo thuật toán:
+o	Greedy Best-First: f(n) = h(n)
+o	A*: f(n) = g(n) + h(n), trong đó g(n) là chi phí từ trạng thái ban đầu đến n
+o	IDA*: sử dụng A* lặp theo ngưỡng f(n)
+Các heuristic phổ biến trong 8-Puzzle:
+•	Misplaced Tiles: số ô sai vị trí
+•	Manhattan Distance: tổng khoảng cách theo hàng và cột từ mỗi ô đến vị trí đúng của nó (hiệu quả hơn và phổ biến hơn)
+#### Solution là gì?
+Tương tự, solution là chuỗi hành động chuyển từ trạng thái ban đầu đến trạng thái đích. Với các thuật toán có thông tin, solution thường ngắn hơn và được tìm thấy nhanh hơn do thuật toán được dẫn đường bởi heuristic.
+#### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
+
+
+| <img src="assets/Greedy.gif" width="200"/> | <img src="assets/A_Star.gif" width="200"/> | <img src="assets/IDA_Star.gif" width="200"/> |
+|:--------------------------------:|:--------------------------------:|:--------------------------------:|
+| **Mô phỏng Greedy**                 | **Mô phỏng A_Star**                 | **Mô phỏng IDA_Star**                 |
+#### Hình ảnh so sánh hiệu suất của các thuật toán
+
+#### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
+    • Greedy Best-First Search:
+        o	Tìm nhanh do chỉ quan tâm đến h(n)
+        o	Không đảm bảo lời giải tối ưu
+        o	Có thể bị mắc kẹt nếu heuristic dẫn sai hướng
+    • A_Star:
+        o	Tìm lời giải tối ưu nếu heuristic là admissible (không vượt quá chi phí thực tế)
+        o	Với heuristic tốt (Manhattan), rất hiệu quả cho 8-Puzzle
+        o	Tốn nhiều bộ nhớ hơn Greedy
+    • IDA_Star:
+        o	Hiệu quả về bộ nhớ hơn A* (dùng DFS theo mức f(n))
+        o	Tốc độ chậm hơn A* do lặp lại nhiều lần
+        o	Cực kỳ hữu ích khi không đủ bộ nhớ cho A*
