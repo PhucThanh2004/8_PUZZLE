@@ -20,7 +20,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("8-Puzzle Solver")
 clock = pygame.time.Clock()
 
-def run_algorithm(algo_func, algo_name):  # Thêm algo_name làm tham số
+def run_algorithm(algo_func, algo_name): # Thêm algo_name làm tham số
     screen.fill(WHITE)
     draw_background(screen)
     draw_puzzle(start_state, 100, 50, screen)
@@ -28,12 +28,16 @@ def run_algorithm(algo_func, algo_name):  # Thêm algo_name làm tham số
     pygame.display.flip()
 
     start_time = time.time()
-    path = algo_func(start_state)
+    path = None
+    if algo_name == "Backtracking":
+        path = algo_func(start_state, screen, clock) # Truyền screen và clock
+    else:
+        path = algo_func(start_state)
     elapsed_time = time.time() - start_time
 
     image_frames = []
     output_gif_path = f"assets/{algo_name}.gif"
-    frame_delay = 0.2  # Thời gian hiển thị mỗi frame trong GIF (giây)
+    frame_delay = 0.2 # Thời gian hiển thị mỗi frame trong GIF (giây)
 
     # Tạo thư mục assets nếu chưa tồn tại
     if not os.path.exists("assets"):
@@ -143,6 +147,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                running = False
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 for idx, rect in enumerate(button_rects):
                     if rect.collidepoint(event.pos):
