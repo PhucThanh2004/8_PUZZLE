@@ -23,7 +23,7 @@ Solution là một chuỗi các hành động hoặc trạng thái dẫn từ tr
 
 #### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
 
-| <img src="assets/BFS.gif" width="200"/> | <img src="assets/IDS.gif" width="200"/> | <img src="assets/UC.gif" width="200"/> | <img src="assets/DFS.gif" width="200"/> |
+| <img src="assets/BFS.gif" width="300"/> | <img src="assets/IDS.gif" width="300"/> | <img src="assets/UC.gif" width="300"/> | <img src="assets/DFS.gif" width="300"/> |
 |:--------------------------------:|:--------------------------------:|:--------------------------------:|:--------------------------------:|
 | **Mô phỏng BFS**                 | **Mô phỏng IDS**                 | **Mô phỏng UCS**                 | **Mô phỏng DFS**                 |
 #### Hình ảnh so sánh hiệu suất của các thuật toán
