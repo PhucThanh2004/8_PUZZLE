@@ -41,14 +41,23 @@ Solution là một chuỗi các hành động hoặc trạng thái dẫn từ tr
 ## 2.2.	Các thuật toán tìm kiếm có thông tin (Informed Search)
 ### Thành phần chính của bài toán tìm kiếm
 Ngoài các thành phần cơ bản giống tìm kiếm không có thông tin, các thuật toán có thông tin sử dụng thêm một yếu tố rất quan trọng:
-    • Hàm heuristic (h(n)): ước lượng chi phí từ một trạng thái n đến trạng thái đích (goal state). Đây là “thông tin bổ sung” giúp hướng dẫn tìm kiếm hiệu quả hơn.
-    • Hàm đánh giá (f(n)): tùy theo thuật toán:
-        o	Greedy Best-First: f(n) = h(n)
-        o	A*: f(n) = g(n) + h(n), trong đó g(n) là chi phí từ trạng thái ban đầu đến n
-        o	IDA*: sử dụng A* lặp theo ngưỡng f(n)
+
+•   Hàm heuristic (h(n)): ước lượng chi phí từ một trạng thái n đến trạng thái đích (goal state). Đây là “thông tin bổ sung” giúp hướng dẫn tìm kiếm hiệu quả hơn.
+
+•   Hàm đánh giá (f(n)): tùy theo thuật toán:
+
+    o   Greedy Best-First: f(n) = h(n)
+
+    o   A*: f(n) = g(n) + h(n), trong đó g(n) là chi phí từ trạng thái ban đầu đến n
+
+    o   IDA*: sử dụng A* lặp theo ngưỡng f(n)
+
 Các heuristic phổ biến trong 8-Puzzle:
-    •	Misplaced Tiles: số ô sai vị trí
-    •	Manhattan Distance: tổng khoảng cách theo hàng và cột từ mỗi ô đến vị trí đúng của nó (hiệu quả hơn và phổ biến hơn)
+
+•   Misplaced Tiles: số ô sai vị trí
+
+•   Manhattan Distance: tổng khoảng cách theo hàng và cột từ mỗi ô đến vị trí đúng của nó (hiệu quả hơn và phổ biến hơn)
+
 #### Solution là gì?
 Tương tự, solution là chuỗi hành động chuyển từ trạng thái ban đầu đến trạng thái đích. Với các thuật toán có thông tin, solution thường ngắn hơn và được tìm thấy nhanh hơn do thuật toán được dẫn đường bởi heuristic.
 #### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
