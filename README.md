@@ -212,6 +212,7 @@ Population: quần thể trạng thái trong mỗi thế hệ
 • **Partially Observable DFS:** Áp dụng DFS với bộ nhớ trạng thái từng thấy, kết hợp giả định để tiến hành tìm kiếm.
 
 ### Solution là gì?
+
 Trong môi trường phức tạp, solution không còn là chuỗi hành động cụ thể từ A → Goal, mà là một chính sách hành động (hoặc plan mờ), đủ mạnh để dẫn đến đích từ nhiều trạng thái ban đầu có thể xảy ra.
 
 ### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
@@ -253,9 +254,13 @@ Các thuật toán này thường sử dụng trong môi trường dạng POMDP 
         o Tuy nhiên, dễ mắc kẹt nếu giả định ban đầu sai
 
 ## 2.5. Các thuật toán tìm kiếm trong môi trường phức tạp – Constraint Satisfaction Problems (CSPs)
+
 ### Thành phần chính của bài toán tìm kiếm
+
 Trong môi trường phức tạp, các bài toán CSP yêu cầu tìm giá trị biến sao cho thỏa mãn tất cả ràng buộc (constraints). Khi trạng thái ban đầu không đầy đủ hoặc có bất định, việc giải CSP trở nên thách thức hơn.
+
 **Các yếu tố cần được xem xét:**
+
 •	Không gian trạng thái khổng lồ: số tổ hợp biến và miền giá trị lớn.
 
 •	Ràng buộc phức tạp: có thể là ràng buộc toàn cục hoặc cục bộ, không dễ kiểm tra.
