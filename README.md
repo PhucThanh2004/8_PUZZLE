@@ -28,12 +28,12 @@ Solution là một chuỗi các hành động hoặc trạng thái dẫn từ tr
 | **Mô phỏng BFS**                 | **Mô phỏng IDS**                 | **Mô phỏng UCS**                 | **Mô phỏng DFS**                 |
 #### Hình ảnh so sánh hiệu suất của các thuật toán
 
-| **Criterion**   | **Breadth-First** | **Uniform Cost** | **Depth-First** | **Depth-Bounded** | **Iterative Deepening** |
-|-----------------|-------------------|------------------|------------------|---------------------|--------------------------|
-| **Hoàn tất (Complete)?**   | Có               | Có              | Không               | Không                  | semi                     |
-| **Tối ưu (Optimal)?**    | Có               | Có              | Không               | Không                  | Có                      |
-| **Độ phức tạp thời gian (Time)**        | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(b^m)           | O(b^ℓ)              | O(b^d)                   |
-| **Độ phức tạp bộ nhớ (Space)**       | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(bm)            | O(b^ℓ)              | O(bd)                    |
+| **Criterion**   | **Breadth-First** | **Uniform Cost** | **Depth-First** | **Iterative Deepening** |
+|-----------------|-------------------|------------------|------------------|--------------------------|
+| **Hoàn tất (Complete)?**   | Có               | Có              | Không               | semi                     |
+| **Tối ưu (Optimal)?**    | Có               | Có              | Không               | Có                      |
+| **Độ phức tạp thời gian (Time)**        | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(b^m)           | O(b^d)                   |
+| **Độ phức tạp bộ nhớ (Space)**       | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(bm)            | O(bd)                    |
 
 #### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
 
@@ -91,7 +91,7 @@ Tương tự, solution là chuỗi hành động chuyển từ trạng thái ban
 | **Hiệu quả Heuristic ảnh hưởng?** | Rất lớn                   | Quan trọng nhưng ổn định hơn      | Cực kỳ quan trọng                      |
 | **Nhận xét thêm**                 | Nhanh, nhưng dễ sai hướng | Cân bằng giữa tốc độ và chính xác | Dùng ít bộ nhớ hơn A\*, nhưng chậm hơn |
 
-Chú thích:
+**Chú thích:**
 
 b: branching factor (số nhánh trung bình từ mỗi trạng thái)
 
@@ -152,7 +152,7 @@ Trong local search, “solution” không nhất thiết phải là đường đ
 | **Dễ bị kẹt local optima?** | Cao                      | Cao                     | Trung bình               | Thấp (có thể nhảy khỏi)     | Cao nếu beam nhỏ               | Thấp (do đột biến/chọn lọc)       |
 | **Thích hợp khi nào?**      | Bài toán đơn giản        | Có nhiều nhánh chọn lựa | Khi không cần tối ưu     | Bài toán nhiều local optima | Khi muốn đa dạng hóa giải pháp | Bài toán phức tạp, tìm gần tối ưu |
 
-Chú thích:
+**Chú thích:**
 
 HC: Hill Climbing
 
