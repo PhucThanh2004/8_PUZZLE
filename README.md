@@ -30,8 +30,8 @@ Solution là một chuỗi các hành động hoặc trạng thái dẫn từ tr
 
 | **Criterion**   | **Breadth-First** | **Uniform Cost** | **Depth-First** | **Depth-Bounded** | **Iterative Deepening** |
 |-----------------|-------------------|------------------|------------------|---------------------|--------------------------|
-| **Hoàn tất (Complete)?**   | yes               | yes              | no               | no                  | semi                     |
-| **Tối ưu (Optimal)?**    | yes               | yes              | no               | no                  | yes                      |
+| **Hoàn tất (Complete)?**   | Có               | Có              | Không               | Không                  | semi                     |
+| **Tối ưu (Optimal)?**    | Có               | Có              | Không               | Không                  | Có                      |
 | **Độ phức tạp thời gian (Time)**        | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(b^m)           | O(b^ℓ)              | O(b^d)                   |
 | **Độ phức tạp bộ nhớ (Space)**       | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(bm)            | O(b^ℓ)              | O(bd)                    |
 
@@ -141,6 +141,24 @@ Trong local search, “solution” không nhất thiết phải là đường đ
 | **Mô phỏng Simulated Annealing**                 | **Mô phỏng Beam Search**                 | **Mô phỏng Genetic Algorithm**                 |
 
 #### Hình ảnh so sánh hiệu suất của các thuật toán
+| **Tiêu chí**                | **Simple Hill Climbing** | **Steepest Ascent HC**  | **Stochastic HC**        | **Simulated Annealing**     | **Beam Search**                | **Genetic Algorithm**             |
+| --------------------------- | ------------------------ | ----------------------- | ------------------------ | --------------------------- | ------------------------------ | --------------------------------- |
+| **Dựa vào Heuristic?**      | Có                       | Có                      | Có                       | Có                          | Có                             | Có                                |
+| **Chiến lược lựa chọn**     | Chọn bước đầu cải thiện  | Chọn bước tốt nhất      | Chọn ngẫu nhiên bước tốt | Có thể chấp nhận bước xấu   | Giữ k beam tốt nhất mỗi bước   | Tạo thế hệ mới từ population      |
+| **Khả năng hoàn tất?**      | Không đảm bảo            | Không đảm bảo           | Không đảm bảo            | Có (với xác suất)           | Có                             | Có                                |
+| **Tối ưu toàn cục?**        | Không                    | Không                   | Không                    | Có thể (nếu đủ thời gian)   | Không (tùy beam width)         | Có thể (với nhiều thế hệ)         |
+| **Chạy thời gian?**         | Nhanh                    | Trung bình              | Trung bình               | Chậm                        | Nhanh nếu beam nhỏ             | Tùy vào số thế hệ                 |
+| **Bộ nhớ sử dụng?**         | Thấp                     | Thấp                    | Thấp                     | Trung bình                  | Cao hơn tùy beam size          | Cao (population-based)            |
+| **Dễ bị kẹt local optima?** | Cao                      | Cao                     | Trung bình               | Thấp (có thể nhảy khỏi)     | Cao nếu beam nhỏ               | Thấp (do đột biến/chọn lọc)       |
+| **Thích hợp khi nào?**      | Bài toán đơn giản        | Có nhiều nhánh chọn lựa | Khi không cần tối ưu     | Bài toán nhiều local optima | Khi muốn đa dạng hóa giải pháp | Bài toán phức tạp, tìm gần tối ưu |
+
+Chú thích:
+
+HC: Hill Climbing
+
+Beam width: số trạng thái tốt nhất giữ lại mỗi bước
+
+Population: quần thể trạng thái trong mỗi thế hệ
 
 #### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
     • Simple Hill Climbing:
