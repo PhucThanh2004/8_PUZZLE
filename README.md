@@ -23,7 +23,7 @@ Solution là một chuỗi các hành động hoặc trạng thái dẫn từ tr
 
 #### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
 
-| <img src="assets/BFS.gif" width="300"/> | <img src="assets/IDS.gif" width="300"/> | <img src="assets/UC.gif" width="300"/> | <img src="assets/DFS.gif" width="300"/> |
+| <img src="assets/BFS.gif" width="200"/> | <img src="assets/IDS.gif" width="200"/> | <img src="assets/UC.gif" width="200"/> | <img src="assets/DFS.gif" width="200"/> |
 |:--------------------------------:|:--------------------------------:|:--------------------------------:|:--------------------------------:|
 | **Mô phỏng BFS**                 | **Mô phỏng IDS**                 | **Mô phỏng UCS**                 | **Mô phỏng DFS**                 |
 #### Hình ảnh so sánh hiệu suất của các thuật toán
@@ -80,6 +80,24 @@ Tương tự, solution là chuỗi hành động chuyển từ trạng thái ban
 |:--------------------------------:|:--------------------------------:|:--------------------------------:|
 | **Mô phỏng Greedy**                 | **Mô phỏng A_Star**                 | **Mô phỏng IDA_Star**                 |
 #### Hình ảnh so sánh hiệu suất của các thuật toán
+
+| **Tiêu chí**                      | **Greedy Best-First**     | **A\***                           | **IDA\***                              |
+| --------------------------------- | ------------------------- | --------------------------------- | -------------------------------------- |
+| **Sử dụng Heuristic?**            | Có (chỉ dùng h(n))        | Có (g(n) + h(n))                  | Có (g(n) + h(n))                       |
+| **Hoàn tất (Complete)?**          | Không đảm bảo             | Có (nếu heuristic admissible)     | Có (nếu heuristic admissible)          |
+| **Tối ưu (Optimal)?**             | Không                     | Có                                | Có                                     |
+| **Độ phức tạp thời gian (Time)**  | O(b^m)                    | O(b^d)                            | O(b^d)                                 |
+| **Độ phức tạp bộ nhớ (Space)**    | O(b)                      | O(b^d)                            | O(d)                                   |
+| **Hiệu quả Heuristic ảnh hưởng?** | Rất lớn                   | Quan trọng nhưng ổn định hơn      | Cực kỳ quan trọng                      |
+| **Nhận xét thêm**                 | Nhanh, nhưng dễ sai hướng | Cân bằng giữa tốc độ và chính xác | Dùng ít bộ nhớ hơn A\*, nhưng chậm hơn |
+
+Chú thích:
+
+b: branching factor (số nhánh trung bình từ mỗi trạng thái)
+
+d: độ sâu của lời giải tối ưu
+
+m: độ sâu tối đa của không gian trạng thái
 
 #### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
     • Greedy Best-First Search:
