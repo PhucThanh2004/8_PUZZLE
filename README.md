@@ -226,7 +226,7 @@ Population: quần thể trạng thái trong mỗi thế hệ
 
 • **Search with No Observation:** Không thể quan sát phản hồi, chỉ có thể giả định hoặc sử dụng mô hình học.
 
-• **Partially Observable BFS:** Áp dụng BFS với bộ nhớ trạng thái từng thấy, kết hợp giả định để tiến hành tìm kiếm.
+• **Partially Observable BFS:** Áp dụng thuật toán BFS trong môi trường chỉ quan sát được một phần trạng thái. Kết hợp duy trì và cập nhật tập "belief" (tập hợp các trạng thái khả dĩ) để tiến hành tìm kiếm. PO-BFS mở rộng các hành động theo lớp giống như BFS, đồng thời cập nhật trạng thái dựa trên quan sát một phần.
 
 ### Solution là gì?
 
@@ -243,13 +243,13 @@ Trong môi trường phức tạp, solution không còn là chuỗi hành độn
 | **Tiêu chí**               | **Uncertain BFS**                                      | **Search with No Observations**                 | **Partially Observable BFS**                 |
 | -------------------------- | ------------------------------------------------------ | ----------------------------------------------- | -------------------------------------------- |
 | **Khả năng quan sát**      | Quan sát hạn chế và không chắc chắn                    | Không có quan sát                               | Quan sát một phần trạng thái                 |
-| **Chiến lược chính**       | Duyệt theo lớp như BFS, nhưng mô hình hóa các khả năng | Hành động mù không phản hồi                     | Duyệt theo chiều sâu kết hợp cập nhật belief |
+| **Chiến lược chính**       | Duyệt theo lớp như BFS, nhưng mô hình hóa các khả năng | Hành động mù không phản hồi                     | Duyệt theo lớp (BFS) + cập nhật tập belief   |
 | **Dựa vào heuristic?**     | Không                                                  | Không                                           | Có thể sử dụng nếu có                        |
-| **Hoàn tất (Complete)?**   | Có nếu không gian nhỏ                                  | Không                                           | Có (với giới hạn)                            |
+| **Hoàn tất (Complete)?**   | Có nếu không gian nhỏ                                  | Không                                           | Có (với điều kiện không gian giới hạn)       |
 | **Tối ưu?**                | Không đảm bảo                                          | Không                                           | Không đảm bảo                                |
 | **Xử lý không chắc chắn?** | Có                                                     | Không                                           | Có                                           |
-| **Bộ nhớ sử dụng?**        | Cao nếu không gian trạng thái lớn                      | Thấp                                            | Trung bình                                   |
-| **Thời gian chạy?**        | Chậm (do xử lý tất cả các khả năng)                    | Nhanh nhưng kém chính xác                       | Phụ thuộc vào kích thước belief              |
+| **Bộ nhớ sử dụng?**        | Cao nếu không gian trạng thái lớn                      | Thấp                                            | Trung bình đến cao (phụ thuộc số belief cần lưu)|
+| **Thời gian chạy?**        | Chậm (do xử lý tất cả các khả năng)                    | Nhanh nhưng kém chính xác                       | Phụ thuộc vào kích thước và đọ chính xác belief   |
 | **Thích hợp khi nào?**     | Khi trạng thái có thể đoán trước phần nào              | Không có cảm biến, hoặc môi trường hoàn toàn mù | Khi có một phần quan sát đáng tin cậy        |
 | **Số bước(Step)**          | **44**                                                 | **34**                                          | **32**                                       |
 | **Thời gian thực hiện(s)** | **3.20**                                               | **1.69**                                        | **52.85**                                    |
@@ -268,15 +268,15 @@ Các thuật toán này thường sử dụng trong môi trường dạng POMDP 
         o Khó triển khai do không có phản hồi từ môi trường
         o Thường phải dựa vào thử sai → hiệu suất thấp, mất kiểm soát đường đi
     • Partially Observable BFS:
-        o Cân bằng giữa mở rộng sâu và lưu trữ tập trạng thái
-        o Hiệu quả nếu môi trường bán quan sát được
-        o Tuy nhiên, dễ mắc kẹt nếu giả định ban đầu sai
+        o Cân bằng giữa mở rộng theo lớp (chiều rộng) và cập nhật tập belief
+        o Hiệu quả nếu môi trường bán quan sát được và tập belief ban đầu đủ chính xác
+        o Tuy nhiên, dễ bị lan rộng không hiệu quả hoặc mắc kẹt nếu giả định ban đầu sai
 
-## 2.5. Các thuật toán tìm kiếm trong môi trường phức tạp – Constraint Satisfaction Problems (CSPs)
+## 2.5. Các thuật toán tìm kiếm có diều kiện – Constraint Satisfaction Problems (CSPs)
 
 ### Thành phần chính của bài toán tìm kiếm
 
-Trong môi trường phức tạp, các bài toán CSP yêu cầu tìm giá trị biến sao cho thỏa mãn tất cả ràng buộc (constraints). Khi trạng thái ban đầu không đầy đủ hoặc có bất định, việc giải CSP trở nên thách thức hơn.
+Các bài toán CSP yêu cầu tìm giá trị biến sao cho thỏa mãn tất cả ràng buộc (constraints). Khi trạng thái ban đầu không đầy đủ hoặc có bất định, việc giải CSP trở nên thách thức hơn.
 
 **Các yếu tố cần được xem xét:**
 
@@ -359,21 +359,21 @@ Trong bài toán CSP, solution là một ánh xạ giữa các biến và giá t
 
 **Một bài toán học tăng cường bao gồm các thành phần chính sau:**
 
-Tập trạng thái (State Space): tập hợp tất cả các trạng thái có thể của môi trường (ví dụ: các cấu hình khác nhau của 8-puzzle).
+    Tập trạng thái (State Space): tập hợp tất cả các trạng thái có thể của môi trường (ví dụ: các cấu hình khác nhau của 8-puzzle).
 
-Tập hành động (Action Space): các hành động có thể thực hiện tại mỗi trạng thái (ví dụ: di chuyển ô trống lên/xuống/trái/phải).
+    Tập hành động (Action Space): các hành động có thể thực hiện tại mỗi trạng thái (ví dụ: di chuyển ô trống lên/xuống/trái/phải).
 
-Hàm phần thưởng (Reward Function): cung cấp phần thưởng cho mỗi hành động. Ví dụ:
+    Hàm phần thưởng (Reward Function): cung cấp phần thưởng cho mỗi hành động. Ví dụ:
 
-Nếu đạt trạng thái đích → phần thưởng lớn (vd: +100).
+    Nếu đạt trạng thái đích → phần thưởng lớn (vd: +100).
 
-Nếu chưa tới đích → phần thưởng nhỏ hoặc âm (vd: -1).
+    Nếu chưa tới đích → phần thưởng nhỏ hoặc âm (vd: -1).
 
-Chính sách hành động (Policy): chiến lược chọn hành động dựa trên trạng thái hiện tại.
+    Chính sách hành động (Policy): chiến lược chọn hành động dựa trên trạng thái hiện tại.
 
-Hàm giá trị (Value Function hoặc Q-Function): đánh giá giá trị kỳ vọng khi thực hiện hành động tại một trạng thái.
+    Hàm giá trị (Value Function hoặc Q-Function): đánh giá giá trị kỳ vọng khi thực hiện hành động tại một trạng thái.
 
-Môi trường (Environment): nơi tác nhân tương tác và nhận phản hồi (trạng thái mới, phần thưởng).
+    Môi trường (Environment): nơi tác nhân tương tác và nhận phản hồi (trạng thái mới, phần thưởng).
 
 ### Solution là gì?
 
@@ -397,20 +397,20 @@ Trong Reinforcement Learning, solution là chuỗi các hành động mà agent 
 
 ### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
 
-Q-Learning hoạt động dựa trên trải nghiệm lặp đi lặp lại trong môi trường, không cần mô hình trạng thái cụ thể.
+    Q-Learning hoạt động dựa trên trải nghiệm lặp đi lặp lại trong môi trường, không cần mô hình trạng thái cụ thể.
 
-Có thể tìm ra lời giải mà không cần duyệt toàn bộ cây trạng thái như BFS/DFS.
+    Có thể tìm ra lời giải mà không cần duyệt toàn bộ cây trạng thái như BFS/DFS.
 
-Dễ rơi vào việc khám phá lặp đi lặp lại nếu không điều chỉnh tốt tham số epsilon.
+    Dễ rơi vào việc khám phá lặp đi lặp lại nếu không điều chỉnh tốt tham số epsilon.
 
-Hiệu quả phụ thuộc lớn vào:
+    Hiệu quả phụ thuộc lớn vào:
 
-Số lượng episode huấn luyện.
+    Số lượng episode huấn luyện.
 
-Cân bằng giữa khai thác (exploit) và khám phá (explore).
+    Cân bằng giữa khai thác (exploit) và khám phá (explore).
 
-Chiến lược cập nhật Q-value (alpha và gamma).
+    Chiến lược cập nhật Q-value (alpha và gamma).
 
-Ưu điểm: Có thể học từ tương tác và cải thiện theo thời gian.
+    Ưu điểm: Có thể học từ tương tác và cải thiện theo thời gian.
 
-Nhược điểm: Không đảm bảo lời giải tối ưu nếu chưa học đủ lâu hoặc cấu hình quá khó.
+    Nhược điểm: Không đảm bảo lời giải tối ưu nếu chưa học đủ lâu hoặc cấu hình quá khó.
