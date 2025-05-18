@@ -1,3 +1,7 @@
+# Link video: https://www.youtube.com/watch?v=RVxzordj4QE
+
+# Link GitHub: https://github.com/PhucThanh2004/8_PUZZLE.git
+
 # 1. Mục tiêu
 
 Bài toán giải quyết trò chơi 8-Puzzle thông qua việc triển khai và so sánh hiệu suất của nhiều thuật toán tìm kiếm khác nhau. Hệ thống cung cấp tùy chọn để người dùng trải nghiệm các thuật toán như BFS, DFS, IDS, Uniform Cost, A*, IDA*, Greedy Best-First Search, Hill Climbing (bao gồm các biến thể), Simulated Annealing, Beam Search, Genetic Algorithm, Backtracking, cùng các thuật toán dành cho môi trường không chắc chắn như Uncertain BFS, Search with No Observations và Partially Observable DFS. Giao diện trực quan được thiết kế bằng Pygame giúp mô phỏng toàn bộ quá trình giải quyết bài toán.
@@ -35,6 +39,9 @@ Solution là một chuỗi các hành động hoặc trạng thái dẫn từ tr
 | **Tối ưu (Optimal)?**    | Có               | Có              | Không               | Có                      |
 | **Độ phức tạp thời gian (Time)**        | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(b^m)           | O(b^d)                   |
 | **Độ phức tạp bộ nhớ (Space)**       | O(b^d)            | O(b^{⌈C*/ε⌉})     | O(bm)            | O(bd)                    |
+| **Số bước(Step)**   | **32**               | **32**              | **31**               | **36**                     |
+| **Thời gian thực hiện(s)**   | **2.88**               | **5.66**              | **0.00**               | **2.22**                     |
+
 
 ### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
 
@@ -95,6 +102,8 @@ Tương tự, solution là chuỗi hành động chuyển từ trạng thái ban
 | **Độ phức tạp bộ nhớ (Space)**    | O(b)                      | O(b^d)                            | O(d)                                   |
 | **Hiệu quả Heuristic ảnh hưởng?** | Rất lớn                   | Quan trọng nhưng ổn định hơn      | Cực kỳ quan trọng                      |
 | **Nhận xét thêm**                 | Nhanh, nhưng dễ sai hướng | Cân bằng giữa tốc độ và chính xác | Dùng ít bộ nhớ hơn A\*, nhưng chậm hơn |
+| **Số bước(Step)**                 | **54**                    | **32**                            | **32**                                 |
+| **Thời gian thực hiện(s)**        | **0.00**                  | **0.33**                          | **0.09**                               |
 
 **Chú thích:**
 
@@ -158,6 +167,8 @@ Trong local search, “solution” không nhất thiết phải là đường đ
 | **Bộ nhớ sử dụng?**         | Thấp                     | Thấp                    | Thấp                     | Trung bình                  | Cao hơn tùy beam size          | Cao (population-based)            |
 | **Dễ bị kẹt local optima?** | Cao                      | Cao                     | Trung bình               | Thấp (có thể nhảy khỏi)     | Cao nếu beam nhỏ               | Thấp (do đột biến/chọn lọc)       |
 | **Thích hợp khi nào?**      | Bài toán đơn giản        | Có nhiều nhánh chọn lựa | Khi không cần tối ưu     | Bài toán nhiều local optima | Khi muốn đa dạng hóa giải pháp | Bài toán phức tạp, tìm gần tối ưu |
+| **Số bước(Step)**           | **2**                    | **2**                   | **2**                    | **448**                     | **90**                         | **23**                            |
+| **Thời gian thực hiện(s)**  | **0.00**                 | **0.00**                | **0.00**                 | **0.00**                    | **0.00**                       | **0.01**                          |
 
 **Chú thích:**
 
@@ -215,7 +226,7 @@ Population: quần thể trạng thái trong mỗi thế hệ
 
 • **Search with No Observation:** Không thể quan sát phản hồi, chỉ có thể giả định hoặc sử dụng mô hình học.
 
-• **Partially Observable DFS:** Áp dụng DFS với bộ nhớ trạng thái từng thấy, kết hợp giả định để tiến hành tìm kiếm.
+• **Partially Observable BFS:** Áp dụng BFS với bộ nhớ trạng thái từng thấy, kết hợp giả định để tiến hành tìm kiếm.
 
 ### Solution là gì?
 
@@ -225,11 +236,11 @@ Trong môi trường phức tạp, solution không còn là chuỗi hành độn
 
 | <img src="assets/BFS Uncertain.gif" width="200"/> | <img src="assets/No Observations.gif" width="200"/> | <img src="assets/PO.gif" width="200"/> |
 |:--------------------------------:|:--------------------------------:|:--------------------------------:|
-| **Mô phỏng Uncertain BFS**                 | **Mô phỏng Search with No Observations**                 | **Mô phỏng Partially Observable DFS**                 |
+| **Mô phỏng Uncertain BFS**                 | **Mô phỏng Search with No Observations**                 | **Mô phỏng Partially Observable BFS**                 |
 
 ### Hình ảnh so sánh hiệu suất của các thuật toán
 
-| **Tiêu chí**               | **Uncertain BFS**                                      | **Search with No Observations**                 | **Partially Observable DFS**                 |
+| **Tiêu chí**               | **Uncertain BFS**                                      | **Search with No Observations**                 | **Partially Observable BFS**                 |
 | -------------------------- | ------------------------------------------------------ | ----------------------------------------------- | -------------------------------------------- |
 | **Khả năng quan sát**      | Quan sát hạn chế và không chắc chắn                    | Không có quan sát                               | Quan sát một phần trạng thái                 |
 | **Chiến lược chính**       | Duyệt theo lớp như BFS, nhưng mô hình hóa các khả năng | Hành động mù không phản hồi                     | Duyệt theo chiều sâu kết hợp cập nhật belief |
@@ -240,6 +251,8 @@ Trong môi trường phức tạp, solution không còn là chuỗi hành độn
 | **Bộ nhớ sử dụng?**        | Cao nếu không gian trạng thái lớn                      | Thấp                                            | Trung bình                                   |
 | **Thời gian chạy?**        | Chậm (do xử lý tất cả các khả năng)                    | Nhanh nhưng kém chính xác                       | Phụ thuộc vào kích thước belief              |
 | **Thích hợp khi nào?**     | Khi trạng thái có thể đoán trước phần nào              | Không có cảm biến, hoặc môi trường hoàn toàn mù | Khi có một phần quan sát đáng tin cậy        |
+| **Số bước(Step)**          | **44**                                                 | **34**                                          | **32**                                       |
+| **Thời gian thực hiện(s)** | **3.20**                                               | **1.69**                                        | **52.85**                                    |
 
 **Chú thích:**
 
@@ -254,7 +267,7 @@ Các thuật toán này thường sử dụng trong môi trường dạng POMDP 
     • Search with No Observations:
         o Khó triển khai do không có phản hồi từ môi trường
         o Thường phải dựa vào thử sai → hiệu suất thấp, mất kiểm soát đường đi
-    • Partially Observable DFS:
+    • Partially Observable BFS:
         o Cân bằng giữa mở rộng sâu và lưu trữ tập trạng thái
         o Hiệu quả nếu môi trường bán quan sát được
         o Tuy nhiên, dễ mắc kẹt nếu giả định ban đầu sai
@@ -324,7 +337,8 @@ Trong bài toán CSP, solution là một ánh xạ giữa các biến và giá t
 | **Thời gian chạy?**        | Chậm nếu không gian lớn                                   | Nhanh hơn backtracking thường                                  | Rất nhanh với bài toán lớn, nhưng không luôn tìm được lời giải   |
 | **Thích hợp khi nào?**     | Bài toán nhỏ hoặc vừa, không cần tối ưu tốc độ            | Bài toán vừa đến lớn, có nhiều ràng buộc chặt chẽ              | Bài toán CSP lớn (như map coloring, n-queen), cần lời giải nhanh |
 | **Nhược điểm chính**       | Dễ rơi vào không gian không lời giải                      | Tốn thêm chi phí kiểm tra forward                              | Có thể lặp vô hạn hoặc mắc kẹt cục bộ                            |
-
+| **Số bước(Step)**          | **48**                                                    |
+| **Thời gian thực hiện(s)** | **6.58**                                                  |
 
 ### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
 
@@ -378,7 +392,8 @@ Trong Reinforcement Learning, solution là chuỗi các hành động mà agent 
 | **Tối ưu (Optimal)?**       | Có thể đạt nếu học đủ lâu và khai thác đúng chính sách    |
 | **Độ phức tạp thời gian**   | Phụ thuộc số episode và số bước mỗi episode               |
 | **Độ phức tạp bộ nhớ**      | Trung bình (lưu bảng Q cho tất cả trạng thái – hành động) |
-
+| **Số bước(Step)**           | **124**                                                   |
+| **Thời gian thực hiện(s)**  | **19.75**                                                 |
 
 ### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
 
