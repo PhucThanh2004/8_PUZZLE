@@ -12,5 +12,6 @@ from .beam_search import beam_search
 from .genetic_algorithm import genetic_algorithm
 from .uncertain_bfs import uncertain_bfs
 from .search_no_obs import search_with_no_observations
-from .po_dfs import partially_observable_dfs
+from .po_bfs import partially_observable_bfs
 from .backtracking import backtracking_search
+from .q_learning import q_learning

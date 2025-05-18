@@ -6,13 +6,16 @@ import imageio
 import os  # Để quản lý file
 
 from core.config import WIDTH, HEIGHT, start_state, goal_state, WHITE
+
 from ui.drawer import draw_puzzle, draw_status, draw_background, draw_buttons
 from ui.utils import draw_progress, draw_time
 from algorithms import (
     bfs, dfs, uniform_cost, greedy, ids, a_star, ida_star,
-    hill_climbing, simulated_annealing, beam_search, genetic_algorithm,
-    uncertain_bfs, search_no_obs, po_dfs, backtracking
+    hill_climbing, simulated_annealing, beam_search, genetic_algorithm, po_bfs,
+    uncertain_bfs, search_no_obs, backtracking, q_learning
 )
+from algorithms import online_search
+
 
 sys.setrecursionlimit(10000)
 pygame.init()
@@ -31,6 +34,8 @@ def run_algorithm(algo_func, algo_name): # Thêm algo_name làm tham số
     path = None
     if algo_name == "Backtracking":
         path = algo_func(start_state, screen, clock) # Truyền screen và clock
+    elif algo_name == "Q-Learning":
+        q_table, path = algo_func(start_state)  # Chạy Q-Learning và lấy cả q_table và path
     else:
         path = algo_func(start_state)
     elapsed_time = time.time() - start_time
@@ -105,8 +110,11 @@ def main():
         ("GA", genetic_algorithm),
         ("BFS Uncertain", uncertain_bfs),
         ("No Observations", search_no_obs.search_with_no_observations),
-        ("PO", po_dfs.partially_observable_dfs),
-        ("Backtracking", backtracking.backtracking_search)
+        ("PO", po_bfs.partially_observable_bfs),
+        ("Backtracking", backtracking.backtracking_search),
+        ("Online Search", online_search.online_search_8_puzzle),
+        ("Q-Learning", q_learning), # Thêm Q-Learning vào danh sách các nút
+
     ]
 
     button_rects = []

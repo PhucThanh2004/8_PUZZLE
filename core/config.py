@@ -24,4 +24,10 @@ GRID_SIZE1 = 3
 start_state = [[8, 6, 7], [2, 5, 4], [3, 0, 1]]  # mức độ xáo trộn rất cao
 goal_state = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
+# start_state = [
+#     [1, 3, 0],
+#     [4, 2, 6],
+#     [7, 5, 8]
+# ]
+
 #start_state = [[1, 2, 3], [4, 0, 5], [7, 8, 6]]  # solvable DFS

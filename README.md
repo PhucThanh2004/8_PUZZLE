@@ -307,6 +307,10 @@ Trong bài toán CSP, solution là một ánh xạ giữa các biến và giá t
 
 ### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
 
+| <img src="assets/Backtracking.gif" width="200"/> | 
+|:--------------------------------:|
+| **Mô phỏng Backtracking**                 | 
+
 ### Hình ảnh so sánh hiệu suất của các thuật toán
 
 | **Tiêu chí**               | **Backtracking**                                          | **Backtracking + Forward Checking**                            | **Min-Conflicts Heuristic**                                      |
@@ -333,3 +337,65 @@ Trong bài toán CSP, solution là một ánh xạ giữa các biến và giá t
     • Min-Conflicts:
         o Rất nhanh trong các bài toán lớn, chấp nhận giải gần đúng.
         o Không đảm bảo lời giải nếu không cẩn thận chọn hàm đánh giá.
+
+
+## 2.6. Thuật toán Học tăng cường (Reinforcement Learning)
+
+### Thành phần chính của bài toán tìm kiếm
+
+**Một bài toán học tăng cường bao gồm các thành phần chính sau:**
+
+Tập trạng thái (State Space): tập hợp tất cả các trạng thái có thể của môi trường (ví dụ: các cấu hình khác nhau của 8-puzzle).
+
+Tập hành động (Action Space): các hành động có thể thực hiện tại mỗi trạng thái (ví dụ: di chuyển ô trống lên/xuống/trái/phải).
+
+Hàm phần thưởng (Reward Function): cung cấp phần thưởng cho mỗi hành động. Ví dụ:
+
+Nếu đạt trạng thái đích → phần thưởng lớn (vd: +100).
+
+Nếu chưa tới đích → phần thưởng nhỏ hoặc âm (vd: -1).
+
+Chính sách hành động (Policy): chiến lược chọn hành động dựa trên trạng thái hiện tại.
+
+Hàm giá trị (Value Function hoặc Q-Function): đánh giá giá trị kỳ vọng khi thực hiện hành động tại một trạng thái.
+
+Môi trường (Environment): nơi tác nhân tương tác và nhận phản hồi (trạng thái mới, phần thưởng).
+
+### Solution là gì?
+
+Trong Reinforcement Learning, solution là chuỗi các hành động mà agent (tác nhân) học được để đi từ trạng thái ban đầu đến trạng thái đích sao cho tối đa hóa tổng phần thưởng nhận được. Trong 8-puzzle, đây là chuỗi bước di chuyển giúp đưa cấu hình ban đầu về cấu hình đích (1–8 và ô trống ở cuối).
+
+### Hình ảnh gif của từng thuật toán khi áp dụng lên trò chơi
+
+| <img src="assets/Q-Learning.gif" width="200"/> | 
+|:--------------------------------:|
+| **Mô phỏng Q-Learning**                 | 
+
+### Hình ảnh so sánh hiệu suất của các thuật toán
+| **Tiêu chí**                | **Q-Learning**                                            |
+| --------------------------- | --------------------------------------------------------- |
+| **Có hoàn tất (Complete)?** | Không chắc chắn (phụ thuộc vào số episode và epsilon)     |
+| **Tối ưu (Optimal)?**       | Có thể đạt nếu học đủ lâu và khai thác đúng chính sách    |
+| **Độ phức tạp thời gian**   | Phụ thuộc số episode và số bước mỗi episode               |
+| **Độ phức tạp bộ nhớ**      | Trung bình (lưu bảng Q cho tất cả trạng thái – hành động) |
+
+
+### Một vài nhận xét về hiệu suất của các thuật toán trong nhóm này khi áp dụng lên trò chơi 8 ô chữ
+
+Q-Learning hoạt động dựa trên trải nghiệm lặp đi lặp lại trong môi trường, không cần mô hình trạng thái cụ thể.
+
+Có thể tìm ra lời giải mà không cần duyệt toàn bộ cây trạng thái như BFS/DFS.
+
+Dễ rơi vào việc khám phá lặp đi lặp lại nếu không điều chỉnh tốt tham số epsilon.
+
+Hiệu quả phụ thuộc lớn vào:
+
+Số lượng episode huấn luyện.
+
+Cân bằng giữa khai thác (exploit) và khám phá (explore).
+
+Chiến lược cập nhật Q-value (alpha và gamma).
+
+Ưu điểm: Có thể học từ tương tác và cải thiện theo thời gian.
+
+Nhược điểm: Không đảm bảo lời giải tối ưu nếu chưa học đủ lâu hoặc cấu hình quá khó.

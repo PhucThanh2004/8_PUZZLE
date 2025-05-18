@@ -1,20 +1,18 @@
-# algorithms/backtracking.py
 import pygame
 import time
-from core.puzzle import get_neighbors
-from core.config import goal_state, WHITE, BLACK # Import màu nếu cần
+from core.puzzle import get_neighbors, heuristic
+from core.config import goal_state, WHITE
 
-def backtracking_search(start_state, screen, clock): # Thêm screen và clock
+def backtracking_search(start_state, screen, clock):
     def backtrack(state, path, visited):
         print(f"Visiting state: {state}")
         # Hiển thị trạng thái hiện tại
-        screen.fill(WHITE) # Hoặc màu nền khác
-        # draw_background(screen) # Nếu bạn có hàm này
-        from ui.drawer import draw_puzzle # Import tại đây để tránh lỗi import vòng
-        draw_puzzle(start_state, 100, 50, screen) # Vẽ trạng thái ban đầu nếu cần
+        screen.fill(WHITE)
+        from ui.drawer import draw_puzzle
+        draw_puzzle(start_state, 100, 50, screen)
         draw_puzzle(state, 600, 50, screen)
         pygame.display.flip()
-        time.sleep(0.1) # Thêm độ trễ để quan sát
+        time.sleep(0.1)
         clock.tick(60)
 
         if state == goal_state:
@@ -27,6 +25,9 @@ def backtracking_search(start_state, screen, clock): # Thêm screen và clock
         visited.add(state_tuple)
 
         neighbors = get_neighbors(state)
+        # Tính f = g + h cho mỗi neighbor, trong đó g = độ sâu = len(path)
+        neighbors = sorted(neighbors, key=lambda n: len(path) + 1 + heuristic(n))
+
         for neighbor in neighbors:
             result = backtrack(neighbor, path + [state], visited)
             if result:
